@@ -12,7 +12,7 @@
 //
 // The [Ptr] type of this package provides a safe alternative with a clear
 // distinction between "not set" and "set to nil".
-package maybe // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/maybe"
+package maybe // import "github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/maybe"
 
 // Ptr references some value of type T that is not guaranteed to exist.
 // Callers must use [Ptr.Try] to access the underlying value, checking the

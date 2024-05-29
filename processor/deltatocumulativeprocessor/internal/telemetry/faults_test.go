@@ -10,12 +10,12 @@ import (
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/otel/metric/noop"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/delta"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/streams"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/telemetry"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/testdata/random"
+	"github.com/euroelessar/opentelemetry-collector-contrib/internal/exp/metrics/identity"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/delta"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/streams"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/telemetry"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/testdata/random"
 )
 
 // TestFaults verifies certain non-fatal errors are actually caused and

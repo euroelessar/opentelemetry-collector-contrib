@@ -1,9 +1,9 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-package streams // import "github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/streams"
+package streams // import "github.com/euroelessar/opentelemetry-collector-contrib/internal/exp/metrics/streams"
 
-import "github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
+import "github.com/euroelessar/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 
 // Sequence of streams that can be iterated upon
 type Seq[T any] func(yield func(identity.Stream, T) bool) bool

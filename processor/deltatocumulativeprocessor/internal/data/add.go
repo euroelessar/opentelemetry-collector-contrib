@@ -1,15 +1,17 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-package data // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
+package data // import "github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
 
 import (
 	"math"
 
 	"go.opentelemetry.io/collector/pdata/pmetric"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data/expo"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data/expo"
 )
+
+const maxBuckets = 160
 
 func (dp Number) Add(in Number) Number {
 	switch in.ValueType() {
@@ -29,6 +31,20 @@ func (dp Histogram) Add(in Histogram) Histogram {
 	panic("todo")
 }
 
+func getDeltaScale(a, b pmetric.ExponentialHistogramDataPointBuckets) expo.Scale {
+	minIndex := min(a.Offset(), b.Offset())
+	maxIndex := max(a.Offset()+int32(a.BucketCounts().Len()), b.Offset()+int32(b.BucketCounts().Len()))
+
+	var deltaScale expo.Scale
+	for maxIndex-minIndex > maxBuckets {
+		minIndex >>= 1
+		maxIndex >>= 1
+		deltaScale++
+	}
+
+	return deltaScale
+}
+
 func (dp ExpHistogram) Add(in ExpHistogram) ExpHistogram {
 	type H = ExpHistogram
 
@@ -38,6 +54,15 @@ func (dp ExpHistogram) Add(in ExpHistogram) ExpHistogram {
 		expo.Downscale(hi.Positive(), from, to)
 		expo.Downscale(hi.Negative(), from, to)
 		hi.SetScale(lo.Scale())
+	}
+
+	if deltaScale := max(getDeltaScale(dp.Positive(), in.Positive()), getDeltaScale(dp.Negative(), in.Negative())); deltaScale > 0 {
+		from := expo.Scale(dp.Scale())
+		to := expo.Scale(dp.Scale()) - deltaScale
+		expo.Downscale(dp.Positive(), from, to)
+		expo.Downscale(dp.Negative(), from, to)
+		expo.Downscale(in.Positive(), from, to)
+		expo.Downscale(in.Negative(), from, to)
 	}
 
 	if dp.ZeroThreshold() != in.ZeroThreshold() {

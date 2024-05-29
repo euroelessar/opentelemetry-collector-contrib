@@ -5,4 +5,4 @@
 
 // package deltatocumulativeprocessor implements a processor which
 // converts metrics from delta temporality to cumulative.
-package deltatocumulativeprocessor // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor"
+package deltatocumulativeprocessor // import "github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor"

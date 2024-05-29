@@ -1,14 +1,14 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-package streams // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/streams"
+package streams // import "github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/streams"
 
 import (
 	"errors"
 	"fmt"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/streams"
+	"github.com/euroelessar/opentelemetry-collector-contrib/internal/exp/metrics/identity"
+	"github.com/euroelessar/opentelemetry-collector-contrib/internal/exp/metrics/streams"
 )
 
 func Limit[T any](m Map[T], max int) LimitMap[T] {

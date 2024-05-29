@@ -1,16 +1,16 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-package delta // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/delta"
+package delta // import "github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/delta"
 
 import (
 	"fmt"
 
 	"go.opentelemetry.io/collector/pdata/pcommon"
 
-	exp "github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/streams"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/streams"
+	exp "github.com/euroelessar/opentelemetry-collector-contrib/internal/exp/metrics/streams"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
+	"github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/streams"
 )
 
 func New[D data.Point[D]]() Accumulator[D] {

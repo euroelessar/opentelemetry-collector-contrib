@@ -1,9 +1,9 @@
-module github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor
+module github.com/euroelessar/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor
 
 go 1.21.0
 
 require (
-	github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics v0.101.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics v0.0.0-20240529052953-a1116bbef3f4
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest v0.101.0
 	github.com/stretchr/testify v1.9.0
 	go.opentelemetry.io/collector/component v0.101.1-0.20240527192838-af4fdd4e342a
