@@ -63,6 +63,8 @@ func (dp ExpHistogram) Add(in ExpHistogram) ExpHistogram {
 		expo.Downscale(dp.Negative(), from, to)
 		expo.Downscale(in.Positive(), from, to)
 		expo.Downscale(in.Negative(), from, to)
+		dp.SetScale(int32(to))
+		in.SetScale(int32(to))
 	}
 
 	if dp.ZeroThreshold() != in.ZeroThreshold() {
