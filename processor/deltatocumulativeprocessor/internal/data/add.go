@@ -31,14 +31,22 @@ func (dp Histogram) Add(in Histogram) Histogram {
 	panic("todo")
 }
 
-func getDeltaScale(a, b pmetric.ExponentialHistogramDataPointBuckets) expo.Scale {
-	minIndex := min(a.Offset(), b.Offset())
-	maxIndex := max(a.Offset()+int32(a.BucketCounts().Len()), b.Offset()+int32(b.BucketCounts().Len()))
+func getDeltaScale(arel, brel pmetric.ExponentialHistogramDataPointBuckets) expo.Scale {
+	a, b := expo.Abs(arel), expo.Abs(brel)
+
+	lo := min(a.Lower(), b.Lower())
+	up := max(a.Upper(), b.Upper())
+	for lo < up && a.Abs(lo) == 0 && b.Abs(lo) == 0 {
+		lo++
+	}
+	for lo < up-1 && a.Abs(up-1) == 0 && b.Abs(up-1) == 0 {
+		up--
+	}
 
 	var deltaScale expo.Scale
-	for maxIndex-minIndex > maxBuckets {
-		minIndex >>= 1
-		maxIndex >>= 1
+	for up-lo > maxBuckets {
+		lo >>= 1
+		up >>= 1
 		deltaScale++
 	}
 
